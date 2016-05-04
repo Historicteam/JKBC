@@ -1,9 +1,9 @@
 package by.ostis.mihas.interrogator;
 
-import by.ostis.mihas.screquest.GetLinksByConntent;
-import by.ostis.mihas.screquest.GetNodeById;
-import by.ostis.mihas.screquest.MakeLinkScRequest;
-import by.ostis.mihas.screquest.MakeNodeScRequest;
+import by.ostis.mihas.screquest.usuallrequest.GetLinksByConntentRequest;
+import by.ostis.mihas.screquest.usuallrequest.GetNodeByIdRequest;
+import by.ostis.mihas.screquest.usuallrequest.MakeLinkScRequest;
+import by.ostis.mihas.screquest.usuallrequest.MakeNodeScRequest;
 import by.ostis.mihas.screquest.exception.ScRequestException;
 import model.scparametr.scelementtype.ScNodeType;
 import org.junit.After;
@@ -18,14 +18,14 @@ public class InterrogatorBuilderTest {
 
     @Before
     public void setUp() throws IOException {
-        this.interrogator = InterrogatorBuilder.getInstance("192.168.50.154", 55770);
+        this.interrogator = InterrogatorBuilder.getInstance("192.168.50.155", 55770);
     }
 
     @After
     public void tearDown() throws IOException {
         interrogator.close();
     }
-
+    @Ignore
     @Test
     public void testMakeNode() throws IOException, ScRequestException {
         interrogator.execute(new MakeNodeScRequest("ostis", new ScNodeType()));
@@ -39,11 +39,16 @@ public class InterrogatorBuilderTest {
 
     @Test
     public void testGetNodeById() throws IOException, ScRequestException {
-        interrogator.execute(new GetNodeById("ostis"));
+        interrogator.execute(new GetNodeByIdRequest("ostis"));
     }
 
     @Test
     public void testGetLinksByConntent() throws IOException, ScRequestException {
-        interrogator.execute(new GetLinksByConntent("MIHAS"));
+        interrogator.execute(new GetLinksByConntentRequest("MIHAS"));
+    }
+
+    @Test
+    public void testGetLinksByConntentRx() throws IOException, ScRequestException {
+        interrogator.execute(new GetLinksByConntentRequest("MIHAS"));
     }
 }

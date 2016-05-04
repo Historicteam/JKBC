@@ -1,4 +1,4 @@
-package by.ostis.mihas.screquest;
+package by.ostis.mihas.screquest.usuallrequest;
 
 import by.ostis.mihas.screquest.exception.ScRequestException;
 import client.ConsSctpClient;

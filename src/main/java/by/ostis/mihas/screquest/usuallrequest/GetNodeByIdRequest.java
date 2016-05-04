@@ -1,4 +1,4 @@
-package by.ostis.mihas.screquest;
+package by.ostis.mihas.screquest.usuallrequest;
 
 import by.ostis.mihas.model.ScNode;
 import by.ostis.mihas.screquest.exception.ScRequestException;
@@ -14,23 +14,23 @@ import model.stcprequest.SctpRequest;
 
 import java.io.IOException;
 
-public class GetNodeById implements ScRequest<ScNode> {
+public class GetNodeByIdRequest implements ScRequest<ScNode> {
     private String id;
 
-    public GetNodeById(String id) {
+    public GetNodeByIdRequest(String id) {
         this.id = id;
     }
 
     public ScNode execute(ConsSctpClient sctpClient) throws IOException, ScRequestException {
         ScString scStringId =  new ScString(id);
         SctpRequest getElementByIdSctpRequest = new GetElementByIdSctpRequest(scStringId);
-        SctpResponse sctpResponse = sctpClient.execute(getElementByIdSctpRequest);
+        SctpResponse sctpResponse = sctpClient.perform(getElementByIdSctpRequest);
         if (sctpResponse.getSctpCodeReturn()!= SctpCodeReturn.SUCCESSFUL){
             throw new ScRequestException();
         }
         ScAddress scAddressNode = (ScAddress) sctpResponse.getParametr(0);
         GetElementTypeStcpRequest getElementTypeStcpRequest = new GetElementTypeStcpRequest(scAddressNode);
-        sctpResponse = sctpClient.execute(getElementTypeStcpRequest);
+        sctpResponse = sctpClient.perform(getElementTypeStcpRequest);
         if (sctpResponse.getSctpCodeReturn()!= SctpCodeReturn.SUCCESSFUL){
             throw new ScRequestException();
         }

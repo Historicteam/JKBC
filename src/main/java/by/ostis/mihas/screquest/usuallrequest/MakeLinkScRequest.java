@@ -1,4 +1,4 @@
-package by.ostis.mihas.screquest;
+package by.ostis.mihas.screquest.usuallrequest;
 
 import by.ostis.mihas.model.ScLink;
 import by.ostis.mihas.screquest.exception.ScRequestException;
@@ -21,14 +21,14 @@ public class MakeLinkScRequest implements ScRequest<ScLink> {
 
     public ScLink execute(ConsSctpClient sctpClient) throws IOException, ScRequestException {
         CreateLinkSctpRequest createLinkSctpRequest = new CreateLinkSctpRequest();
-        SctpResponse sctpResponse = sctpClient.execute(createLinkSctpRequest);
+        SctpResponse sctpResponse = sctpClient.perform(createLinkSctpRequest);
         if (sctpResponse.getSctpCodeReturn()!= SctpCodeReturn.SUCCESSFUL){
             throw new ScRequestException();
         }
         ScAddress linkScAdress = (ScAddress) sctpResponse.getParametr(0);
         ScString linkConntent = new ScString(conntent);
         SetLinkContentSctpRequest setLinkContentSctpRequest = new SetLinkContentSctpRequest(linkScAdress, linkConntent);
-        sctpResponse = sctpClient.execute(setLinkContentSctpRequest);
+        sctpResponse = sctpClient.perform(setLinkContentSctpRequest);
         if (sctpResponse.getSctpCodeReturn()!= SctpCodeReturn.SUCCESSFUL){
             throw new ScRequestException();
         }

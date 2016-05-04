@@ -1,4 +1,4 @@
-package by.ostis.mihas.screquest;
+package by.ostis.mihas.screquest.usuallrequest;
 
 import by.ostis.mihas.model.ScNode;
 import by.ostis.mihas.screquest.exception.IdBusyException;
@@ -27,19 +27,19 @@ public class MakeNodeScRequest implements ScRequest<ScNode> {
 
     public ScNode execute(ConsSctpClient sctpClient) throws IOException, ScRequestException {
         SctpRequest getElementByIdSctpRequest = new GetElementByIdSctpRequest(new ScString(idtf));
-        SctpResponse sctpResponse = sctpClient.execute(getElementByIdSctpRequest);
+        SctpResponse sctpResponse = sctpClient.perform(getElementByIdSctpRequest);
         if (sctpResponse.getSctpCodeReturn()== SctpCodeReturn.SUCCESSFUL){
             throw new IdBusyException("Element with system id "+idtf+" already exists");
         }
         CreateNodeSctpRequest createNodeSctpRequest = new CreateNodeSctpRequest(scNodeType);
-        sctpResponse = sctpClient.execute(createNodeSctpRequest);
+        sctpResponse = sctpClient.perform(createNodeSctpRequest);
         if (sctpResponse.getSctpCodeReturn()!= SctpCodeReturn.SUCCESSFUL){
             throw new ScRequestException();
         }
         ScAddress scAddressNode = (ScAddress) sctpResponse.getParametr(0);
         ScString scString = new ScString(idtf);
         SctpRequest setIdentifierSctpRequest = new SetIdentifierSctpRequest(scAddressNode, scString);
-        sctpResponse = sctpClient.execute(setIdentifierSctpRequest);
+        sctpResponse = sctpClient.perform(setIdentifierSctpRequest);
         if (sctpResponse.getSctpCodeReturn()!= SctpCodeReturn.SUCCESSFUL){
             throw new ScRequestException();
         }

@@ -1,4 +1,4 @@
-package by.ostis.mihas.screquest;
+package by.ostis.mihas.screquest.usuallrequest;
 
 import by.ostis.mihas.model.ScLink;
 import by.ostis.mihas.screquest.exception.ScRequestException;
@@ -15,10 +15,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GetLinksByConntent implements ScRequest<List<ScLink>> {
+public class GetLinksByConntentRequest implements ScRequest<List<ScLink>> {
     private String conntent;
 
-    public GetLinksByConntent(String conntent) {
+    public GetLinksByConntentRequest(String conntent) {
         this.conntent = conntent;
     }
 
@@ -26,7 +26,7 @@ public class GetLinksByConntent implements ScRequest<List<ScLink>> {
         List<ScLink> listLinks = new ArrayList<ScLink>();
         ScString scStringLink = new ScString(conntent);
         SctpRequest getLinksByContentSctpRequest = new GetLinksByContentSctpRequest(scStringLink);
-        SctpResponse sctpResponse = sctpClient.execute(getLinksByContentSctpRequest);
+        SctpResponse sctpResponse = sctpClient.perform(getLinksByContentSctpRequest);
         if (sctpResponse.getSctpCodeReturn()!= SctpCodeReturn.SUCCESSFUL){
             if (sctpResponse.getSctpCodeReturn()== SctpCodeReturn.UNSUCCESSFULLY){
                 return listLinks;
