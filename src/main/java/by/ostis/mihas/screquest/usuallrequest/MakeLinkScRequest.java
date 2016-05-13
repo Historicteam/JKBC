@@ -2,6 +2,7 @@ package by.ostis.mihas.screquest.usuallrequest;
 
 import by.ostis.mihas.model.ScLink;
 import by.ostis.mihas.screquest.exception.ScRequestException;
+import client.AdvancedSctpClient;
 import client.ConsSctpClient;
 import model.scparametr.ScAddress;
 import model.scparametr.ScString;
@@ -19,7 +20,7 @@ public class MakeLinkScRequest implements ScRequest<ScLink> {
         this.conntent = conntent;
     }
 
-    public ScLink execute(ConsSctpClient sctpClient) throws IOException, ScRequestException {
+    public ScLink execute(AdvancedSctpClient sctpClient) throws IOException, ScRequestException {
         CreateLinkSctpRequest createLinkSctpRequest = new CreateLinkSctpRequest();
         SctpResponse sctpResponse = sctpClient.perform(createLinkSctpRequest);
         if (sctpResponse.getSctpCodeReturn()!= SctpCodeReturn.SUCCESSFUL){

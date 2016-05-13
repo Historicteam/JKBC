@@ -2,6 +2,7 @@ package by.ostis.mihas.screquest.usuallrequest;
 
 import by.ostis.mihas.model.ScNode;
 import by.ostis.mihas.screquest.exception.ScRequestException;
+import client.AdvancedSctpClient;
 import client.ConsSctpClient;
 import model.scparametr.ScAddress;
 import model.scparametr.ScString;
@@ -21,7 +22,7 @@ public class GetNodeByIdRequest implements ScRequest<ScNode> {
         this.id = id;
     }
 
-    public ScNode execute(ConsSctpClient sctpClient) throws IOException, ScRequestException {
+    public ScNode execute(AdvancedSctpClient sctpClient) throws IOException, ScRequestException {
         ScString scStringId =  new ScString(id);
         SctpRequest getElementByIdSctpRequest = new GetElementByIdSctpRequest(scStringId);
         SctpResponse sctpResponse = sctpClient.perform(getElementByIdSctpRequest);
@@ -35,6 +36,6 @@ public class GetNodeByIdRequest implements ScRequest<ScNode> {
             throw new ScRequestException();
         }
         ScElementType scElementTypeNode = (ScElementType) sctpResponse.getParametr(0);
-        return new ScNode(scAddressNode,scStringId,scElementTypeNode);
+        return new ScNode(scAddressNode,scElementTypeNode,scStringId);
     }
 }

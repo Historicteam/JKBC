@@ -3,15 +3,16 @@ package by.ostis.mihas.interrogator;
 import by.ostis.mihas.screquest.rxrequest.RxScRequest;
 import by.ostis.mihas.screquest.usuallrequest.ScRequest;
 import by.ostis.mihas.screquest.exception.ScRequestException;
+import client.AdvancedSctpClient;
 import client.ConsSctpClient;
 import rx.Observable;
 
 import java.io.IOException;
 
 public class InterrogatorImpl implements Interrogator {
-    private ConsSctpClient sctpClient;
+    private AdvancedSctpClient sctpClient;
 
-    protected InterrogatorImpl(ConsSctpClient sctpClient) {
+    protected InterrogatorImpl(AdvancedSctpClient sctpClient) {
         this.sctpClient = sctpClient;
     }
 

@@ -6,11 +6,15 @@ import model.scparametr.scelementtype.ScElementType;
 
 public class ScNode extends ScElement {
     private ScString systemIdtf;
-    private ScElementType scElementType;
 
-    public ScNode(ScAddress scAddress, ScString systemIdtf, ScElementType scElementType) {
-        super(scAddress);
-        this.systemIdtf = systemIdtf;
-        this.scElementType = scElementType;
+    public ScNode(ScAddress scAddress, ScElementType scElementType, ScString systemIdtf) {
+        super(scAddress, scElementType);
+        this.systemIdtf=systemIdtf;
+    }
+
+
+    @Override
+    public ScString get() {
+        return systemIdtf;
     }
 }

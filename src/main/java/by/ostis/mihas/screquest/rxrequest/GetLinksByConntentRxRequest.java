@@ -2,6 +2,7 @@ package by.ostis.mihas.screquest.rxrequest;
 
 import by.ostis.mihas.model.ScLink;
 import by.ostis.mihas.screquest.exception.ScRequestException;
+import client.AdvancedSctpClient;
 import client.ConsSctpClient;
 import model.scparametr.ScAddress;
 import model.scparametr.ScContentSize;
@@ -22,7 +23,7 @@ public class GetLinksByConntentRxRequest extends RxScRequest<ScLink> {
     }
 
     @Override
-    public void executor(ConsSctpClient sctpClient, Subscriber<? super ScLink> sub) {
+    public void executor(AdvancedSctpClient sctpClient, Subscriber<? super ScLink> sub) {
         ScString scStringLink = new ScString(conntent);
         SctpRequest getLinksByContentSctpRequest = new GetLinksByContentSctpRequest(scStringLink);
         SctpResponse sctpResponse = null;

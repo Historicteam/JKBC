@@ -2,6 +2,7 @@ package by.ostis.mihas.screquest.usuallrequest;
 
 import by.ostis.mihas.model.ScLink;
 import by.ostis.mihas.screquest.exception.ScRequestException;
+import client.AdvancedSctpClient;
 import client.ConsSctpClient;
 import model.scparametr.ScAddress;
 import model.scparametr.ScContentSize;
@@ -22,7 +23,7 @@ public class GetLinksByConntentRequest implements ScRequest<List<ScLink>> {
         this.conntent = conntent;
     }
 
-    public List<ScLink> execute(ConsSctpClient sctpClient) throws IOException, ScRequestException {
+    public List<ScLink> execute(AdvancedSctpClient sctpClient) throws IOException, ScRequestException {
         List<ScLink> listLinks = new ArrayList<ScLink>();
         ScString scStringLink = new ScString(conntent);
         SctpRequest getLinksByContentSctpRequest = new GetLinksByContentSctpRequest(scStringLink);
