@@ -31,7 +31,6 @@ public class GetNodeByIdRequest implements ScRequest<ScNode> {
         }
         ScAddress scAddressNode = (ScAddress) sctpResponse.getParametr(0);
         GetElementTypeStcpRequest getElementTypeStcpRequest = new GetElementTypeStcpRequest(scAddressNode);
-        getElementTypeStcpRequest = new GetElementTypeStcpRequest(scAddressNode);
         sctpResponse = sctpClient.perform(getElementTypeStcpRequest);
         if (sctpResponse.getSctpCodeReturn()!= SctpCodeReturn.SUCCESSFUL){
             throw new ScRequestException();
