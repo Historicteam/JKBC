@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata>
   <groupId>by.ostis.mihas</groupId>
-  <artifactId>jscp</artifactId>
+  <artifactId>jkbc</artifactId>
   <versioning>
-    <release>0.0.1</release>
     <versions>
-      <version>0.0.1</version>
+      <version>1.0-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20160403124149</lastUpdated>
+    <lastUpdated>20160526121804</lastUpdated>
   </versioning>
 </metadata>
